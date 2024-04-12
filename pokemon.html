@@ -28,10 +28,21 @@
         <p><a href="#header">Voltar para o topo</a></p>
         <p><a href="mailto:contato@squirtlepage.com">Contato via e-mail</a></p>
         <p><a href="tel:+5555555555">Telefone: (55) 5555-5555</a></p>
+        <p id="acessos_logs"></p>
     </footer>
 
 </body>
 <script>
+
+    if (localStorage.getItem("chave") == null)
+        criarChaveLocalStorage()
+
+    let acessos = JSON.parse(localStorage.getItem("chave"))
+    acessos = atualizarLocalStorage(acessos)
+    inserirLocalStorage(acessos)
+
+    document.getElementById("acessos_logs").textContent = `Esta página foi visitada ${acessos.acessos} vezes. A última visita foi: ${acessos.data}`
+
     const searchParams = new URLSearchParams(location.search)
     const nomePokemon = searchParams.get("evolucao")
     var header = document.getElementById("header")
@@ -49,14 +60,42 @@
         .then(data => {
             const divImagens = document.getElementById("pokemonImagens")
             const img = document.createElement('img');
-            img.src = data.sprites.front_default;
-            img.alt = nomePokemon + ` image`;
+
+            const spritesFiltrado = Object.values(data.sprites).filter(e => {
+                if (typeof e == "string")
+                    return e
+            })
+
+            i = 0;
+            img.src = spritesFiltrado[i + 1]
+            img.addEventListener("click", function () {
+                if (i == 3)
+                    i = 0
+                img.src = spritesFiltrado[i]
+                i++
+            })
+            img.alt = `${nomePokemon} image`;
             divImagens.appendChild(img);
         })
         .catch(error => {
             console.error('Erro:', error);
         });
 
+
+    function criarChaveLocalStorage() {
+        let acessosData = { "acessos": 1, "data": Date }
+        localStorage.setItem("chave", JSON.stringify(acessosData));
+    }
+
+    function inserirLocalStorage(objeto) {
+        localStorage.setItem("chave", JSON.stringify(objeto))
+    }
+
+    function atualizarLocalStorage(objeto) {
+        objeto.acessos = objeto.acessos + 1;
+        objeto.data = new Date().toLocaleString('pt-BR', { day: 'numeric', month: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric' })
+        return objeto
+    }
 </script>
 
 </html>
