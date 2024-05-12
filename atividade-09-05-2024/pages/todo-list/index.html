@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Página do Pokémon Squirtle</title>
+
+    <link rel="stylesheet" href="../../styles.css" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header id="header">
+      <a href="../../index.html">
+        <h1>Todo List</h1>
+      </a>
+    </header>
+
+    <main>
+      <form id="formulario" onsubmit="enviarDados(event)">
+        <p><input type="text" placeholder="Informe o título da tarefa" name="titulo" id="titulo"></p>
+        <p><input type="textarea" placeholder="Informe a descrição da tarefa" name="descricao"></p>
+        <p><button >Salvar Tarefa</button></p>
+      </form>
+      <ul id="lista-tarefas" class="lista">
+      </ul>
+    </main>
+
+    <footer aria-label="Rodapé">
+      <p aria-label="Copyright">
+        &copy; 2024 Todo List
+      </p>
+    </footer>
+    <script src="./index.js"></script>
+    <script src="../../index.js"></script>
+  </body>
+</html>
