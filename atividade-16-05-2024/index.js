@@ -5,25 +5,29 @@ document.getElementById("header").appendChild(squirtle)
 const elemento = document.createElement('h3')
 elemento.textContent = "Squirtle"
 
-ul = document.createElement("ul")
-ul.style.backgroundColor = "#343a40"
-ul.style.color = "white"
-ul.style.gap = "20px";
-ul.style.justifyContent = "center";
-ul.style.flexWrap = "wrap";
-ul.style.padding = "10px";
-ul.style.marginBottom = "20px";
+listaNav = document.createElement("ul")
+listaNav.style.backgroundColor = "#343a40"
+listaNav.style.color = "white"
+listaNav.style.gap = "20px";
+listaNav.style.justifyContent = "center";
+listaNav.style.flexWrap = "wrap";
+listaNav.style.padding = "10px";
+listaNav.style.marginBottom = "20px";
 
 const infosNav = ["Informações sobre Squirtle","Características",
                   "Curiosidades","Artigo sobre Squirtle",
                   "Recursos Adicionais","Evolução","Todo List"]
 
+const infosCuriosidades = ["Squirtle é um dos Pokémon mais populares e adoráveis.",
+                           "Seu nome deriva das palavras \"squirrel\""+"(esquilo) e \"turtle"+"(tartaruga).",
+                           "Squirtle é frequentemente escolhido por treinadores para começar sua jornada Pokémon."]
+
 infosNav.forEach(e => {
-    ul.appendChild(createLi(e))
-});
+    listaNav.appendChild(createLi(e,"a"))
+})
 
 nav = document.getElementById("nav")
-nav.appendChild(ul)
+nav.appendChild(listaNav)
 
 const main = document.getElementById("main")
 
@@ -46,11 +50,18 @@ paragrafoCaracteristicas.textContent = "Squirtle é conhecido por sua concha nas
 sectionCaracteristicas.appendChild(paragrafoCaracteristicas)
 main.appendChild(sectionCaracteristicas)
 
-function createLi(texto){
+const sectionCuriosidades = criaSectionComTitulo(main, infosNav[2])
+const listaCuriosidades = document.createElement("ul")
+infosCuriosidades.forEach(e => {
+    listaCuriosidades.appendChild(createLi(e,"p"))
+})
+sectionCuriosidades.appendChild(listaCuriosidades)
+
+function createLi(texto, tipo){
     const li = document.createElement("li")
-    const a = document.createElement("a")
-    a.textContent = texto
-    li.appendChild(a)
+    const tipoElemento = document.createElement(tipo)
+    tipoElemento.textContent = texto
+    li.appendChild(tipoElemento)
     return li
 }
 
