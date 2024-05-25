@@ -55,13 +55,11 @@ const paragrafoInfo = document.createElement("p")
 paragrafoInfo.textContent = "Squirtle é um Pokémon do tipo Água. É o Pokémon inicial da região de Kanto e evolui para Wartortle."
 sectionInfoSquirtle.appendChild(divImagens)
 sectionInfoSquirtle.appendChild(paragrafoInfo)
-main.appendChild(sectionInfoSquirtle)
 
 const sectionCaracteristicas = criaElementoComTitulo(main, infosNav[1], "section")
 const paragrafoCaracteristicas = document.createElement("p")
 paragrafoCaracteristicas.textContent = "Squirtle é conhecido por sua concha nas costas, que oferece proteção adicional. Ele possui ataques de água poderosos, como Water Gun e Hydro Pump."
 sectionCaracteristicas.appendChild(paragrafoCaracteristicas)
-main.appendChild(sectionCaracteristicas)
 
 const sectionCuriosidades = criaElementoComTitulo(main, infosNav[2], "section")
 const listaCuriosidades = document.createElement("ul")
@@ -80,7 +78,19 @@ const listaRecursos = document.createElement("ul")
 listaRecursos.appendChild(createLi("Pokédex - Squirtle", "a"))
 listaRecursos.appendChild(createLi("Bulbapedia - Squirtle", "a"))
 sectionRecursos.appendChild(listaRecursos)
-main.appendChild(sectionRecursos)
+
+const sectionEvolucao = criaElementoComTitulo(main, "Evoluções", "section")
+const listaImagens = document.createElement("ul")
+const itemLista = document.createElement("li")
+itemLista.style.listStyle = "none"
+const figure = document.createElement("figure")
+figure.appendChild(criaElementoImg("https://assets.pokemon.com/assets/cms2/img/pokedex/detail/007.png", 1))
+const figcaption = document.createElement("figcaption")
+figcaption.textContent = "1. Squirtle"
+figure.appendChild(figcaption)
+itemLista.appendChild(figure)
+listaImagens.appendChild(itemLista)
+sectionEvolucao.appendChild(listaImagens)
 
 function createLi(texto, tipo) {
     const li = document.createElement("li")
