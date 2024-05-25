@@ -5,7 +5,6 @@ document.getElementById("header").appendChild(squirtle)
 const elemento = document.createElement('h3')
 elemento.textContent = "Squirtle"
 
-nav = document.getElementById("nav")
 ul = document.createElement("ul")
 ul.style.backgroundColor = "#343a40"
 ul.style.color = "white"
@@ -14,13 +13,16 @@ ul.style.justifyContent = "center";
 ul.style.flexWrap = "wrap";
 ul.style.padding = "10px";
 ul.style.marginBottom = "20px";
-ul.appendChild(createLi("Informações sobre Squirtle"))
-ul.appendChild(createLi("Características"))
-ul.appendChild(createLi("Curiosidades"))
-ul.appendChild(createLi("Artigo sobre Squirtle"))
-ul.appendChild(createLi("Recursos Adicionais"))
-ul.appendChild(createLi("Evolução"))
-ul.appendChild(createLi("Todo List"))
+
+const infosNav = ["Informações sobre Squirtle","Características",
+                  "Curiosidades","Artigo sobre Squirtle",
+                  "Recursos Adicionais","Evolução","Todo List"]
+
+infosNav.forEach(e => {
+    ul.appendChild(createLi(e))
+});
+
+nav = document.getElementById("nav")
 nav.appendChild(ul)
 
 function createLi(texto){
