@@ -27,26 +27,24 @@ nav.appendChild(ul)
 
 const main = document.getElementById("main")
 
-const section = document.createElement("section")
-const infoSquirtle = document.createElement("h2")
-infoSquirtle.textContent = infosNav[0]
-section.appendChild(infoSquirtle)
-
+const sectionInfoSquirtle = criaSectionComTitulo(main, infosNav[0])
 const divImagens = document.createElement("div")
 divImagens.style.display = "flex";
 divImagens.style.justifyContent = "space-evenly";
 divImagens.style.flexWrap = "wrap";
 divImagens.appendChild(criaElementoImg("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png",1))
 divImagens.appendChild(criaElementoImg("https://archives.bulbagarden.net/media/upload/thumb/7/79/Squirtle_SSBU.png/200px-Squirtle_SSBU.png",2))
-
 const paragrafoInfo = document.createElement("p")
 paragrafoInfo.textContent = "Squirtle é um Pokémon do tipo Água. É o Pokémon inicial da região de Kanto e evolui para Wartortle."
+sectionInfoSquirtle.appendChild(divImagens)
+sectionInfoSquirtle.appendChild(paragrafoInfo)
+main.appendChild(sectionInfoSquirtle)
 
-section.appendChild(divImagens)
-section.appendChild(paragrafoInfo)
-main.appendChild(section)
-
-
+const sectionCaracteristicas = criaSectionComTitulo(main, infosNav[1])
+const paragrafoCaracteristicas = document.createElement("p")
+paragrafoCaracteristicas.textContent = "Squirtle é conhecido por sua concha nas costas, que oferece proteção adicional. Ele possui ataques de água poderosos, como Water Gun e Hydro Pump."
+sectionCaracteristicas.appendChild(paragrafoCaracteristicas)
+main.appendChild(sectionCaracteristicas)
 
 function createLi(texto){
     const li = document.createElement("li")
@@ -64,4 +62,13 @@ function criaElementoImg(link, numeracao){
     imagem.src = link
     imagem.alt = "Squirtle " + numeracao
     return imagem
+}
+
+function criaSectionComTitulo(main, titulo){
+    const section = document.createElement("section")
+    const tituloSection = document.createElement("h2")
+    tituloSection.textContent = titulo
+    section.appendChild(tituloSection)
+    main.appendChild(section)
+    return section
 }
