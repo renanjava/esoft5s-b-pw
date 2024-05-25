@@ -22,6 +22,19 @@ const infosCuriosidades = ["Squirtle é um dos Pokémon mais populares e adoráv
     "Seu nome deriva das palavras \"squirrel\"" + "(esquilo) e \"turtle" + "(tartaruga).",
     "Squirtle é frequentemente escolhido por treinadores para começar sua jornada Pokémon."]
 
+const infosArticle = ["Squirtle, com sua aparência simpática e sua habilidade em controlar a" +
+    "água, conquistou o coração de treinadores Pokémon ao redor do mundo." +
+    "Sendo o inicial de água na região de Kanto, Squirtle é uma escolha" +
+    "popular para aqueles que buscam equilíbrio e versatilidade em suas equipes.",
+"Sua concha nas costas não apenas oferece proteção, mas também é um" +
+"símbolo de resistência. Ao evoluir para Wartortle e, posteriormente," +
+"para Blastoise, Squirtle se transforma em uma força formidável," +
+"dominando ataques aquáticos que podem surpreender adversários em batalhas.",
+"Além de suas habilidades de batalha, Squirtle é conhecido por seu" +
+"carisma. Treinadores muitas vezes descrevem a relação com seu Squirtle" +
+"como uma amizade profunda, tornando-o não apenas um companheiro de" +
+"lutas, mas um amigo leal ao longo de suas jornadas."]
+
 infosNav.forEach(e => {
     listaNav.appendChild(createLi(e, "a"))
 })
@@ -31,7 +44,7 @@ nav.appendChild(listaNav)
 
 const main = document.getElementById("main")
 
-const sectionInfoSquirtle = criaSectionComTitulo(main, infosNav[0])
+const sectionInfoSquirtle = criaElementoComTitulo(main, infosNav[0], "section")
 const divImagens = document.createElement("div")
 divImagens.style.display = "flex";
 divImagens.style.justifyContent = "space-evenly";
@@ -44,18 +57,23 @@ sectionInfoSquirtle.appendChild(divImagens)
 sectionInfoSquirtle.appendChild(paragrafoInfo)
 main.appendChild(sectionInfoSquirtle)
 
-const sectionCaracteristicas = criaSectionComTitulo(main, infosNav[1])
+const sectionCaracteristicas = criaElementoComTitulo(main, infosNav[1], "section")
 const paragrafoCaracteristicas = document.createElement("p")
 paragrafoCaracteristicas.textContent = "Squirtle é conhecido por sua concha nas costas, que oferece proteção adicional. Ele possui ataques de água poderosos, como Water Gun e Hydro Pump."
 sectionCaracteristicas.appendChild(paragrafoCaracteristicas)
 main.appendChild(sectionCaracteristicas)
 
-const sectionCuriosidades = criaSectionComTitulo(main, infosNav[2])
+const sectionCuriosidades = criaElementoComTitulo(main, infosNav[2], "section")
 const listaCuriosidades = document.createElement("ul")
 infosCuriosidades.forEach(e => {
     listaCuriosidades.appendChild(createLi(e, "N/A"))
 })
 sectionCuriosidades.appendChild(listaCuriosidades)
+
+const articleSquirtle = criaElementoComTitulo(main, "Squirtle: O Amigo Aquático", "article")
+infosArticle.forEach(e => {
+    articleSquirtle.appendChild(criaParagrafoArticle(e))
+})
 
 function createLi(texto, tipo) {
     const li = document.createElement("li")
@@ -80,11 +98,17 @@ function criaElementoImg(link, numeracao) {
     return imagem
 }
 
-function criaSectionComTitulo(main, titulo) {
-    const section = document.createElement("section")
-    const tituloSection = document.createElement("h2")
-    tituloSection.textContent = titulo
-    section.appendChild(tituloSection)
-    main.appendChild(section)
-    return section
+function criaElementoComTitulo(main, titulo, tipo) {
+    const elemento = document.createElement(tipo)
+    const tituloElemento = document.createElement("h2")
+    tituloElemento.textContent = titulo
+    elemento.appendChild(tituloElemento)
+    main.appendChild(elemento)
+    return elemento
+}
+
+function criaParagrafoArticle(texto) {
+    const paragrafo = document.createElement("p")
+    paragrafo.textContent = texto
+    return paragrafo
 }
