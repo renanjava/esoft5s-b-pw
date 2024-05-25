@@ -75,11 +75,24 @@ infosArticle.forEach(e => {
     articleSquirtle.appendChild(criaParagrafoArticle(e))
 })
 
+const sectionRecursos = criaElementoComTitulo(main, infosNav[4], "section")
+const listaRecursos = document.createElement("ul")
+listaRecursos.appendChild(createLi("Pokédex - Squirtle", "a"))
+listaRecursos.appendChild(createLi("Bulbapedia - Squirtle", "a"))
+sectionRecursos.appendChild(listaRecursos)
+main.appendChild(sectionRecursos)
+
 function createLi(texto, tipo) {
     const li = document.createElement("li")
     if (tipo == "a") {
         const tipoElemento = document.createElement(tipo)
         tipoElemento.textContent = texto
+        if (texto == "Pokédex - Squirtle" || "Bulbapedia - Squirtle") {
+            tipoElemento.href = (texto == "Pokédex - Squirtle" ? "https://www.pokemon.com/br/pokedex/squirtle"
+                : "https://bulbapedia.bulbagarden.net/wiki/Squirtle_(Pok%C3%A9mon)"
+            )
+        }
+
         li.appendChild(tipoElemento)
     } else if (tipo == "N/A") {
         li.style.listStyle = "none"
