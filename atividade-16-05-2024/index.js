@@ -14,16 +14,16 @@ listaNav.style.flexWrap = "wrap";
 listaNav.style.padding = "10px";
 listaNav.style.marginBottom = "20px";
 
-const infosNav = ["Informações sobre Squirtle","Características",
-                  "Curiosidades","Artigo sobre Squirtle",
-                  "Recursos Adicionais","Evolução","Todo List"]
+const infosNav = ["Informações sobre Squirtle", "Características",
+    "Curiosidades", "Artigo sobre Squirtle",
+    "Recursos Adicionais", "Evolução", "Todo List"]
 
 const infosCuriosidades = ["Squirtle é um dos Pokémon mais populares e adoráveis.",
-                           "Seu nome deriva das palavras \"squirrel\""+"(esquilo) e \"turtle"+"(tartaruga).",
-                           "Squirtle é frequentemente escolhido por treinadores para começar sua jornada Pokémon."]
+    "Seu nome deriva das palavras \"squirrel\"" + "(esquilo) e \"turtle" + "(tartaruga).",
+    "Squirtle é frequentemente escolhido por treinadores para começar sua jornada Pokémon."]
 
 infosNav.forEach(e => {
-    listaNav.appendChild(createLi(e,"a"))
+    listaNav.appendChild(createLi(e, "a"))
 })
 
 nav = document.getElementById("nav")
@@ -36,8 +36,8 @@ const divImagens = document.createElement("div")
 divImagens.style.display = "flex";
 divImagens.style.justifyContent = "space-evenly";
 divImagens.style.flexWrap = "wrap";
-divImagens.appendChild(criaElementoImg("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png",1))
-divImagens.appendChild(criaElementoImg("https://archives.bulbagarden.net/media/upload/thumb/7/79/Squirtle_SSBU.png/200px-Squirtle_SSBU.png",2))
+divImagens.appendChild(criaElementoImg("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png", 1))
+divImagens.appendChild(criaElementoImg("https://archives.bulbagarden.net/media/upload/thumb/7/79/Squirtle_SSBU.png/200px-Squirtle_SSBU.png", 2))
 const paragrafoInfo = document.createElement("p")
 paragrafoInfo.textContent = "Squirtle é um Pokémon do tipo Água. É o Pokémon inicial da região de Kanto e evolui para Wartortle."
 sectionInfoSquirtle.appendChild(divImagens)
@@ -53,19 +53,24 @@ main.appendChild(sectionCaracteristicas)
 const sectionCuriosidades = criaSectionComTitulo(main, infosNav[2])
 const listaCuriosidades = document.createElement("ul")
 infosCuriosidades.forEach(e => {
-    listaCuriosidades.appendChild(createLi(e,"p"))
+    listaCuriosidades.appendChild(createLi(e, "N/A"))
 })
 sectionCuriosidades.appendChild(listaCuriosidades)
 
-function createLi(texto, tipo){
+function createLi(texto, tipo) {
     const li = document.createElement("li")
-    const tipoElemento = document.createElement(tipo)
-    tipoElemento.textContent = texto
-    li.appendChild(tipoElemento)
+    if (tipo == "a") {
+        const tipoElemento = document.createElement(tipo)
+        tipoElemento.textContent = texto
+        li.appendChild(tipoElemento)
+    } else if (tipo == "N/A") {
+        li.style.listStyle = "none"
+        li.textContent = "🔎 " + texto
+    }
     return li
 }
 
-function criaElementoImg(link, numeracao){
+function criaElementoImg(link, numeracao) {
     const imagem = document.createElement("img")
     imagem.style.width = (numeracao == 1 ? "150px" : "98px");
     imagem.style.height = (numeracao == 1 ? "150px" : "98px");
@@ -75,7 +80,7 @@ function criaElementoImg(link, numeracao){
     return imagem
 }
 
-function criaSectionComTitulo(main, titulo){
+function criaSectionComTitulo(main, titulo) {
     const section = document.createElement("section")
     const tituloSection = document.createElement("h2")
     tituloSection.textContent = titulo
