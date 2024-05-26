@@ -2,13 +2,13 @@ const infosNav = ["Informações sobre Squirtle", "Características",
     "Curiosidades", "Artigo sobre Squirtle",
     "Recursos Adicionais", "Evolução", "Todo List"]
 
-const refsNav = ["#info-squirtle","#caracteristicas","#curiosidades","#artigo-squirtle","#recursos","#evolucao",null]
+const refsNav = ["info-squirtle","caracteristicas","curiosidades","artigo-squirtle","recursos","evolucao",null]
 
 const infosCuriosidades = ["Squirtle é um dos Pokémon mais populares e adoráveis.",
-    "Seu nome deriva das palavras \"squirrel\"" + "(esquilo) e \"turtle" + "(tartaruga).",
+    "Seu nome deriva das palavras \"squirrel\" " + "(esquilo) e \"turtle\" " + "(tartaruga).",
     "Squirtle é frequentemente escolhido por treinadores para começar sua jornada Pokémon."]
 
-const infosArticle = ["Squirtle, com sua aparência simpática e sua habilidade em controlar a" +
+const infosArticle = ["Squirtle, com sua aparência simpática e sua habilidade em controlar a " +
     "água, conquistou o coração de treinadores Pokémon ao redor do mundo." +
     "Sendo o inicial de água na região de Kanto, Squirtle é uma escolha" +
     "popular para aqueles que buscam equilíbrio e versatilidade em suas equipes.",
@@ -39,7 +39,7 @@ listaNav.style.marginBottom = "20px";
 
 let i = 0
 infosNav.forEach(e => {
-    listaNav.appendChild(createLi(e, "a", refsNav[i]))
+    listaNav.appendChild(createLi(e, "a", "#"+refsNav[i]))
     i++
 })
 
@@ -49,7 +49,7 @@ nav.appendChild(listaNav)
 const main = document.getElementById("main")
 
 const sectionInfoSquirtle = criaElementoComTitulo(main, infosNav[0], "section")
-sectionInfoSquirtle.classList.add("#info-squirtle")
+sectionInfoSquirtle.id = refsNav[0]
 const divImagens = document.createElement("div")
 divImagens.style.display = "flex";
 divImagens.style.justifyContent = "space-evenly";
@@ -62,11 +62,13 @@ sectionInfoSquirtle.appendChild(divImagens)
 sectionInfoSquirtle.appendChild(paragrafoInfo)
 
 const sectionCaracteristicas = criaElementoComTitulo(main, infosNav[1], "section")
+sectionCaracteristicas.id = refsNav[1]
 const paragrafoCaracteristicas = document.createElement("p")
 paragrafoCaracteristicas.textContent = "Squirtle é conhecido por sua concha nas costas, que oferece proteção adicional. Ele possui ataques de água poderosos, como Water Gun e Hydro Pump."
 sectionCaracteristicas.appendChild(paragrafoCaracteristicas)
 
 const sectionCuriosidades = criaElementoComTitulo(main, infosNav[2], "section")
+sectionCuriosidades.id = refsNav[2]
 const listaCuriosidades = document.createElement("ul")
 infosCuriosidades.forEach(e => {
     listaCuriosidades.appendChild(createLi(e, "N/A", null))
@@ -74,18 +76,20 @@ infosCuriosidades.forEach(e => {
 sectionCuriosidades.appendChild(listaCuriosidades)
 
 const articleSquirtle = criaElementoComTitulo(main, "Squirtle: O Amigo Aquático", "article")
+articleSquirtle.id = refsNav[3]
 infosArticle.forEach(e => {
     articleSquirtle.appendChild(criaParagrafoArticle(e))
 })
 
 const sectionRecursos = criaElementoComTitulo(main, infosNav[4], "section")
+sectionRecursos.id = refsNav[4]
 const listaRecursos = document.createElement("ul")
 listaRecursos.appendChild(createLi("Pokédex - Squirtle", "a", null))
 listaRecursos.appendChild(createLi("Bulbapedia - Squirtle", "a", null))
 sectionRecursos.appendChild(listaRecursos)
 
 const sectionEvolucao = criaElementoComTitulo(main, "Evoluções", "section")
-sectionEvolucao.classList.add("evolucao")
+sectionEvolucao.id = refsNav[5]
 const listaImagens = document.createElement("ul")
 listaImagens.style.display = "flex";
 listaImagens.style.justifyContent = "space-around";
@@ -116,15 +120,15 @@ function createLi(texto, tipo, referencia){
         li.appendChild(tipoElemento)
     } else if (tipo == "N/A") {
         li.style.listStyle = "none"
-        li.textContent = "🔎 " + texto
+        li.textContent = texto
     }
     return li
 }
 
 function criaElementoImg(link, numeracao){
     const imagem = document.createElement("img")
-    imagem.style.width = (numeracao == 1 ? "150px" : "98px");
-    imagem.style.height = (numeracao == 1 ? "150px" : "98px");
+    imagem.style.width = (numeracao == 1 ? "150px" : "140px");
+    imagem.style.height = (numeracao == 1 ? "150px" : "140px");
     imagem.style.alignSelf = "center";
     imagem.src = link
     imagem.alt = "Squirtle " + numeracao
