@@ -17,7 +17,7 @@ function addTask(event) {
 
   li.id = taskId
   li.innerHTML = `
-      <button class="update-button" title="Editar tarefa">✏️</button>
+      <button id="update-button" class="update-button" title="Editar tarefa" onclick="abrirDialog(${task.title},${task.description})">✏️</button>
       <h2>${taskTitle}</h2>
       <p>${taskDescription}</p>
   `
@@ -32,12 +32,18 @@ function addTask(event) {
   form.reset()
 }
 
-function adicionaBotao(){
-  const botaoUpdate = document.createElement("button")
-  botaoUpdate.textContent = '✏️'
-  botaoUpdate.title = "Editar tarefa"
-  botaoUpdate.classList.add("update-button")
-  return botaoUpdate
+function abrirDialog(title, description){
+  const dialog = document.getElementById("dialog")
+  const tituloForm = document.getElementById("updateTitle")
+  tituloForm.value = title
+  const descricaoForm = document.getElementById("updateDescription")
+  descricaoForm.value = description
+  dialog.showModal()
+}
+
+function fecharDialog(){
+  const dialog = document.getElementById("dialog")
+  dialog.close()
 }
 
 // Carregar tarefas do localStorage ao recarregar a página
@@ -45,6 +51,6 @@ window.addEventListener('DOMContentLoaded', () => {
   const tasks = JSON.parse(localStorage.getItem(taskKey)) || []
   const taskList = document.querySelector('#taskList')
   taskList.innerHTML = tasks
-    .map((task) => `<li><button class="update-button" title="Editar tarefa">✏️</button><h2>${task.title}</h2><p>${task.description}</p></li>`)
+    .map((task) => `<li><button id="update-button" class="update-button" title="Editar tarefa" onclick="abrirDialog('${task.title}','${task.description}')">✏️</button><h2>${task.title}</h2><p>${task.description}</p></li>`)
     .join('')
 })

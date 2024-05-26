@@ -32,6 +32,23 @@
 
         <!-- Lista de tarefas -->
         <ul id="taskList"></ul>
+        <dialog id="dialog" close>
+          <form id="updateForm">
+            <input
+              type="text"
+              name="title"
+              id="updateTitle"
+            />
+            <textarea
+              id="updateDescription"
+              name="description"
+            ></textarea>
+            <div>
+              <button type="submit">Editar Tarefa</button>
+              <button onclick="fecharDialog()">Cancelar</button>  
+            </div>
+          </form>
+        </dialog>
       </main>
       <footer>&copy; 2024 Todo List</footer>
     </div>
