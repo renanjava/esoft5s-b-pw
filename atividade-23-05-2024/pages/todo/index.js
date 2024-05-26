@@ -17,7 +17,7 @@ function addTask(event) {
 
   li.id = taskId
   li.innerHTML = `
-      <button id="update-button" class="update-button" title="Editar tarefa" onclick="abrirDialog(${task.title},${task.description})">✏️</button>
+      <button id="update-button" class="update-button" title="Editar tarefa" onclick="abrirDialog('${taskTitle}','${taskDescription}')">✏️</button>
       <h2>${taskTitle}</h2>
       <p>${taskDescription}</p>
   `
