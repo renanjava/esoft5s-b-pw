@@ -2,6 +2,8 @@ const taskKey = '@tasks'
 
 let selectedTaskId = null
 
+
+
 // Função para adicionar tarefa
 function addTask(event) {
   event.preventDefault() // Evita o recarregamento da página
@@ -25,7 +27,6 @@ function addTask(event) {
     <button title="Editar tarefa" onClick="openEditDialog(${taskId})" style="margin-right: 3px;">✏️</button>
     <button title="Excluir tarefa" onClick="removeTask(${taskId})" style="margin-left: 3px;">❌</button>
   `
-
   taskList.appendChild(li)
 
   // Salvar tarefas no localStorage
@@ -40,12 +41,22 @@ function addTask(event) {
   form.reset()
 }
 
-function editTask(event) {
+function editTask() {
   const form = document.querySelector('#editTaskForm')
   const formData = new FormData(form)
 
+  const taskId = formData.get('id')
   const taskTitle = formData.get('title')
   const taskDescription = formData.get('description')
+
+  const tasksLocal = JSON.parse(localStorage.getItem(taskKey)) || []
+  tasksLocal.forEach(element => {
+    if (element.id == taskId) {
+      element.title = taskTitle
+      element.description = taskDescription
+    }
+  })
+  localStorage.setItem(taskKey, JSON.stringify(tasksLocal))
 }
 
 function openEditDialog(taskId) {
@@ -56,13 +67,14 @@ function openEditDialog(taskId) {
 
   const dialog = document.querySelector('dialog')
 
+  const editId = document.querySelector('#editTaskForm #id')
   const editTitle = document.querySelector('#editTaskForm #title')
   const editDescription = document.querySelector('#editTaskForm #description')
 
+  editId.value = taskId
   editTitle.value = task.title
   editDescription.value = task.description
 
-  task.title.value = "oi"
   dialog.showModal()
 }
 
@@ -76,10 +88,10 @@ function removeTask(id) {
   const elementoRemovido = document.getElementById(`id-${id}`)
   listaTasks.removeChild(elementoRemovido)
 
-  const tasksLocal = JSON.parse(localStorage.getItem("@tasks")) || []
+  const tasksLocal = JSON.parse(localStorage.getItem(taskKey)) || []
   const indiceRemove = tasksLocal.findIndex(element => element.id === id)
   tasksLocal.splice(indiceRemove, 1)
-  localStorage.setItem("@tasks", JSON.stringify(tasksLocal))
+  localStorage.setItem(taskKey, JSON.stringify(tasksLocal))
 }
 
 // Carregar tarefas do localStorage ao recarregar a página
