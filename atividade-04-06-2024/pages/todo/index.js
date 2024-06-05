@@ -22,7 +22,8 @@ function addTask(event) {
       <h2>${taskTitle}</h2>
       <p>${taskDescription}</p>
     </div>
-    <button title="Editar tarefa" onClick="openEditDialog(${taskId})">✏️</button>
+    <button title="Editar tarefa" onClick="openEditDialog(${taskId})" style="margin-right: 3px;">✏️</button>
+    <button title="Excluir tarefa" onClick="removeTask(${taskId})" style="margin-left: 3px;">❌</button>
   `
 
   taskList.appendChild(li)
