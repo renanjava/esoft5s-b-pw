@@ -1,34 +1,40 @@
 import React from "react";
 import './styles.css'
-
-function Header(props: any) {
-  return (
-    React.createElement(
-      'header',
-      { className: 'headerSquirtle' },
-      <h1>{props.title}</h1>
-    )
-  );
-}
-
-function CardSection(props: any) {
-  return (
-    React.createElement(
-      'section',
-      { className: 'sectionSquirtle' },
-      <h1>{props.teste}</h1>
-    )
-  );
-}
+import Header from "./header";
+import InfoSquirtle from "./infosquirtle";
+import Caracteristicas from "./caracteristicas";
+import Curiosidades from "./curiosidades";
+import Recursos from "./recursos";
+import Evolucao from "./evolucao";
+import CardSection from "./cardsection";
 
 export default function Home() {
   return (
-    <body>
-      <Header title={"Squirtle"} />
-
+    <div id="root">
+      <Header title={"Squirtle"}/>
+      
       <main>
-        <CardSection teste={"oi"} />
+        <CardSection 
+          title={"Informações sobre o Squirtle"} 
+          children={<InfoSquirtle></InfoSquirtle>}
+        />
+        <CardSection 
+          title={"Caracteristicas"} 
+          children={<Caracteristicas></Caracteristicas>}
+        />
+        <CardSection 
+          title={"Curiosidades"} 
+          children={<Curiosidades></Curiosidades>}
+        />
+        <CardSection 
+          title={"Recursos"} 
+          children={<Recursos></Recursos>}
+        />
+        <CardSection 
+          title={"Evolucao"} 
+          children={<Evolucao></Evolucao>}
+        />
       </main>
-    </body>
+    </div>
   );
 }
