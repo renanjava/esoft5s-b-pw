@@ -1,7 +1,7 @@
 {
   "name": "atividade-13-06-2024",
   "version": "0.1.0",
-  "homepage": "https://renanjava.github.io/esoft5s-b-pw/atividade-13-06-2024/",
+  "homepage": "https://renanjava.github.io/esoft5s-b-pw/atividade-13-06-2024/react",
   "private": true,
   "scripts": {
     "predeploy": "npm run build",
